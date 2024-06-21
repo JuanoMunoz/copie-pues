@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-with-placeholder::placeholder {
+  color: transparent; /* Esto hace que el placeholder original sea invisible */
+}
+
+.input-with-placeholder::before {
+  content: attr(
+    data-placeholder
+  ); /* Usamos el atributo data-placeholder para el contenido */
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Para que el texto no interfiera con el input */
+  color: #9ca3af; /* Este es el color del placeholder, puedes cambiarlo según necesites */
+}
+
+.input-with-placeholder:not(:placeholder-shown)::before {
+  display: none; /* Oculta el texto de antes cuando no hay placeholder */
+}
+
+.input-wrapper {
+  position: relative; /* Necesario para que el placeholder personalizado se posicione correctamente */
+}
