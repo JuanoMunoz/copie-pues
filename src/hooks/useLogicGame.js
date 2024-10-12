@@ -1,6 +1,5 @@
-
 import confetti from "canvas-confetti";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 export default function useLogicGame(reset, points) {
   const [counter, setCounter] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -9,10 +8,15 @@ export default function useLogicGame(reset, points) {
     if (!isPlaying) return;
     if (counter <= 0) {
       setIsPlaying(false);
-      setCounter(localStorage.getItem("time") ?? 30);
-      if (points >= 1){      setTimeout(() => {
-        confetti({spread: 180, colors: ["#FFEA00","0000ff","ff0000"],particleCount:400})
-      }, 400)
+      setCounter(localStorage.getItem("time") || 30);
+      if (points >= 5) {
+        setTimeout(() => {
+          confetti({
+            spread: 180,
+            colors: ["#FFEA00", "0000ff", "ff0000"],
+            particleCount: 400,
+          });
+        }, 400);
       }
       reset();
 
@@ -23,5 +27,12 @@ export default function useLogicGame(reset, points) {
       setCounter(counter - 1);
     }, 1000);
   }, [counter, isPlaying, isOnPause, reset, points]);
-  return { counter, isPlaying, isOnPause, setIsOnPause, setIsPlaying, setCounter};
+  return {
+    counter,
+    isPlaying,
+    isOnPause,
+    setIsOnPause,
+    setIsPlaying,
+    setCounter,
+  };
 }

@@ -63,7 +63,7 @@ export default function Game({
     >
       {letters.map((letter, idx) => {
         return letter === " " ? (
-          <div key={idx} className="w-5"></div>
+          <div key={idx} className="w-3"></div>
         ) : (
           <div
             className={`${
